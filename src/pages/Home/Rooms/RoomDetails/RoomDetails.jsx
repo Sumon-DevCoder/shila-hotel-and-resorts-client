@@ -19,6 +19,7 @@ const RoomDetails = () => {
         price: room?.price,
         image: room?.image,
         room_id: room?._id,
+        location: room?.location,
         description: room?.description,
       };
 

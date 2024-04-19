@@ -5,11 +5,15 @@ import useAuthContext from "../../../hooks/useAuthContext";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useTheme from "../../../hooks/useTheme";
+import useBookings from "./../../../hooks/useBookings";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logOut, user } = useAuthContext();
   const { mode, changedTheme } = useTheme();
+  const [bookings, refetch] = useBookings();
+
+  refetch();
 
   const handleLogout = () => {
     logOut().then(() => {
@@ -76,7 +80,9 @@ const Navbar = () => {
         <div className="flex-initial">
           <div className="flex justify-end items-center relative">
             <Link to={"/dashboard/myBookings"}>
-              <button className="btn btn-secondary btn-sm">My Bookings</button>
+              <button className="btn btn-secondary btn-sm">
+                My Bookings ({bookings.length})
+              </button>
             </Link>
             <div className="flex mr-4 items-center">
               <a
@@ -106,10 +112,10 @@ const Navbar = () => {
                       {user ? (
                         <>
                           <li>
-                            <a>Dashboard</a>
+                            <Link to={"/dashboard"}>Dashboard</Link>
                           </li>
                           <li>
-                            <button onClick={handleLogout}>Logout</button>
+                            <Link onClick={handleLogout}>Logout</Link>
                           </li>
                         </>
                       ) : (
@@ -152,7 +158,6 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        {/* <!-- end login --> */}
       </nav>
     </div>
   );

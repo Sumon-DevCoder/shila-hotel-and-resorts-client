@@ -5,6 +5,9 @@ import Home from "../pages/Home/Home";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import RoomDetails from "../pages/Home/Rooms/RoomDetails/RoomDetails";
+import Dashboard from "../layouts/Dashboard";
+import MyBookings from "../pages/Dashboard/MyBookings/MyBookings";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +32,22 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      // admin route
+      {
+        path: "/dashboard/allUsers",
+        element: <AllUsers />,
+      },
+      // users route
+      {
+        path: "/dashboard/myBookings",
+        element: <MyBookings />,
       },
     ],
   },

@@ -1,5 +1,11 @@
+import Rooms from "./Rooms/Rooms";
+
 const Home = () => {
-  return <div>Welcome Home</div>;
+  return (
+    <div>
+      <Rooms />
+    </div>
+  );
 };
 
 export default Home;

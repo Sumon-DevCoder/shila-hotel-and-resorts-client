@@ -14,6 +14,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const [showPass, setShowPass] = useState(false);
+  const [error, setError] = useState("");
   const { login } = useAuthContext();
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,24 +27,29 @@ const Login = () => {
     const password = data.password;
 
     // Login setup
-    login(email, password).then((result) => {
-      console.log(result.user);
+    login(email, password)
+      .then((result) => {
+        console.log(result.user);
 
-      // reset
-      reset();
+        // reset
+        reset();
 
-      // success alert
-      Swal.fire({
-        position: "top-center",
-        icon: "success",
-        title: "Login Successful",
-        showConfirmButton: false,
-        timer: 1500,
+        // success alert
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        // navigate
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error.message);
       });
-
-      // navigate
-      navigate(from, { replace: true });
-    });
   };
   return (
     <div>
@@ -104,27 +110,12 @@ const Login = () => {
                       onClick={() => setShowPass(!showPass)}
                     />
                   </div>
-                  {errors.password?.type === "minLength" && (
-                    <span className="text-red-500 font-semibold">
-                      Password Must have 6 characters
-                    </span>
-                  )}
-                  {errors.password?.type === "maxLength" && (
-                    <span className="text-red-500 font-semibold">
-                      Password Must have less than 20 characters
-                    </span>
-                  )}
-                  {errors.password?.type === "pattern" && (
-                    <span className="text-red-500 font-semibold">
-                      Password Must have one uppercase, lowercase,special
-                      character, and number
-                    </span>
-                  )}
-                  {errors.password && (
+                  {/* {errors.password && (
                     <span className="text-red-500 font-semibold">
                       Please input password
                     </span>
-                  )}{" "}
+                  )}{" "} */}
+                  {error && <p className="text-red-500 font-bold">{error}</p>}
                   <button className="mt-5 tracking-wide font-semibold bg-blue-900 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                     <svg
                       className="w-6 h-6 -ml-2"

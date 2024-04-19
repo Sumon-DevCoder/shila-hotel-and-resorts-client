@@ -8,6 +8,7 @@ import RoomDetails from "../pages/Home/Rooms/RoomDetails/RoomDetails";
 import Dashboard from "../layouts/Dashboard";
 import MyBookings from "../pages/Dashboard/MyBookings/MyBookings";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       // admin route
+      {
+        path: "/dashboard/adminHome",
+        element: <AdminHome />,
+      },
       {
         path: "/dashboard/allUsers",
         element: <AllUsers />,

@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 const RoomCard = ({ room }) => {
   const { title, price, image, _id } = room || {};
 
-  console.log(room);
-
   return (
     <>
       <Link

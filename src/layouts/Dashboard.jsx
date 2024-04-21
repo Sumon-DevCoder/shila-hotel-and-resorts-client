@@ -16,6 +16,12 @@ const Dashboard = () => {
                 <Link to={"/dashboard/adminHome"}>Admin Home</Link>
               </li>
               <li className="bg-green-400 p-2 rounded-lg">
+                <Link to={"/dashboard/addItems"}>Add Items</Link>
+              </li>
+              <li className="bg-green-400 p-2 rounded-lg">
+                <Link to={"/dashboard/mangeitems"}>Manage Items</Link>
+              </li>
+              <li className="bg-green-400 p-2 rounded-lg">
                 <Link to={"/dashboard/adminHome"}>Manage Bookings</Link>
               </li>
               <li className="bg-green-400 p-2 rounded-lg">

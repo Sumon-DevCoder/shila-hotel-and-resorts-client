@@ -9,6 +9,9 @@ import Dashboard from "../layouts/Dashboard";
 import MyBookings from "../pages/Dashboard/MyBookings/MyBookings";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import AdminRoute from "./AdminRoute";
+import AddItems from "../pages/Dashboard/AddItems/AddItems";
+import MangeItems from "../pages/Dashboard/MangeItems/MangeItems";
 
 const router = createBrowserRouter([
   {
@@ -43,11 +46,35 @@ const router = createBrowserRouter([
       // admin route
       {
         path: "/dashboard/adminHome",
-        element: <AdminHome />,
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/addItems",
+        element: (
+          <AdminRoute>
+            <AddItems />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/manageItems",
+        element: (
+          <AdminRoute>
+            <MangeItems />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/allUsers",
-        element: <AllUsers />,
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       // users route
       {

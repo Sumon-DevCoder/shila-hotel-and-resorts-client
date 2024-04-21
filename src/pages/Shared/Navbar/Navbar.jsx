@@ -79,11 +79,13 @@ const Navbar = () => {
         {/* <!-- login --> */}
         <div className="flex-initial">
           <div className="flex justify-end items-center relative">
-            <Link to={"/dashboard/myBookings"}>
-              <button className="btn btn-secondary btn-sm">
-                My Bookings ({bookings.length})
-              </button>
-            </Link>
+            {user && (
+              <Link to={"/dashboard/myBookings"}>
+                <button className="btn btn-secondary btn-sm">
+                  My Bookings ({bookings.length})
+                </button>
+              </Link>
+            )}
             <div className="flex mr-4 items-center">
               <a
                 className="inline-block py-2 px-3 hover:bg-gray-200 rounded-full"

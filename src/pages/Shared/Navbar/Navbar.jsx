@@ -6,14 +6,14 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useTheme from "../../../hooks/useTheme";
 import useBookings from "./../../../hooks/useBookings";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logOut, user } = useAuthContext();
   const { mode, changedTheme } = useTheme();
-  const [bookings, refetch] = useBookings();
-
-  refetch();
+  const [bookings] = useBookings();
+  const [isAdmin] = useAdmin();
 
   const handleLogout = () => {
     logOut().then(() => {
@@ -79,11 +79,16 @@ const Navbar = () => {
         {/* <!-- login --> */}
         <div className="flex-initial">
           <div className="flex justify-end items-center relative">
-            {user && (
+            {user && !isAdmin && (
               <Link to={"/dashboard/myBookings"}>
                 <button className="btn btn-secondary btn-sm">
-                  My Bookings ({bookings.length})
+                  My Bookings ({bookings?.length})
                 </button>
+              </Link>
+            )}
+            {user && isAdmin && (
+              <Link to={"/dashboard"}>
+                <button className="btn btn-secondary btn-sm">Dashboard</button>
               </Link>
             )}
             <div className="flex mr-4 items-center">

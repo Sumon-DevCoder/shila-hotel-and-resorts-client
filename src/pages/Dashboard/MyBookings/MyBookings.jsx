@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useBookings from "../../../hooks/useBookings";
+import { Link } from "react-router-dom";
 
 const MyBookings = () => {
   const [bookings, refetch] = useBookings();
@@ -34,8 +35,24 @@ const MyBookings = () => {
     });
   };
 
+  // total Price
+  const price = bookings?.reduce((prev, current) => prev + current.price, 0);
+
   return (
     <div>
+      <div className="flex p-5 justify-around">
+        <h2 className="font-bold">Items: {bookings?.length}</h2>
+        <h2 className="font-bold">Total Price: {price}</h2>
+        {price ? (
+          <Link to={"/dashboard/payment"}>
+            <button className="btn btn-sm btn-secondary">Pay</button>
+          </Link>
+        ) : (
+          <button disabled className="btn btn-sm btn-secondary">
+            Pay
+          </button>
+        )}
+      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

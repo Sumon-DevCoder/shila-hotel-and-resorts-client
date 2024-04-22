@@ -46,7 +46,7 @@ const Dashboard = () => {
           </li>
         </ul>
       </div>
-      <div>
+      <div className="flex-1">
         <Outlet />
       </div>
     </div>
